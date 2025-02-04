@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import random
 import hashlib
+from collections import defaultdict
 
 # Constant
-IS_RAND_DICE = True
+IS_RAND_DICE = False
 IS_TEST = False
 IS_PRINT_WORD = False
 DICE_COUNT = 100 
@@ -16,14 +17,22 @@ if IS_PRINT_WORD:
 			BIP_0039.append(line.strip())
 
 # INPUT -----------
-dice_list = [1,2,3]
+dice_list = []
+num_cnt = defaultdict(int)
+if IS_RAND_DICE:
+	dice_list = [random.randint(1, 8) for _ in range(DICE_COUNT)]
+for x in dice_list:
+	num_cnt[x] += 1
+print("dice_list_len:", len(dice_list))
+print("dice_list:", dice_list)
+print("dice_statistic ------->", sum([y for x,y in num_cnt.items()]))
+for i in range(1,9,1):
+	print("  %d: %d" % (i, num_cnt[i]))
+
+
+dice_list = [x-1 for x in dice_list]
 binary_list = []
 binary_list_str = ""
-
-if IS_RAND_DICE:
-	dice_list = [random.randint(1, 8)-1 for _ in range(DICE_COUNT)]
-print("dice_list:", dice_list)
-
 for x in dice_list:
 	for i in range(3):
 		if len(binary_list) >= MAX_LEN:
