@@ -2,16 +2,18 @@
 import random
 import hashlib
 
+# Constant
 IS_RAND_DICE = True
 IS_TEST = False
-IS_PRINT_WORD = True
+IS_PRINT_WORD = False
 DICE_COUNT = 100 
 MAX_LEN = 256
 VALUE_CNT = 11
 BIP_0039 = []
-with open("./bip_0039", "r") as rf:
-	for line in rf.readlines():
-		BIP_0039.append(line.strip())
+if IS_RAND_DICE:
+	with open("./bip_0039", "r") as rf:
+		for line in rf.readlines():
+			BIP_0039.append(line.strip())
 
 # INPUT -----------
 dice_list = [1,2,3]
