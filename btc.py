@@ -10,7 +10,7 @@ DICE_COUNT = 100
 MAX_LEN = 256
 VALUE_CNT = 11
 BIP_0039 = []
-if IS_RAND_DICE:
+if IS_PRINT_WORD:
 	with open("./bip_0039", "r") as rf:
 		for line in rf.readlines():
 			BIP_0039.append(line.strip())
